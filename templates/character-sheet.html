@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>CTL sheet</title>
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <!-- Boostrap -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- JS files -->
+    <script type="module" src="{{ url_for('static', filename='js/characterSheet.js') }}" defer></script>
+</head>
+
+<body>
+<div id="body-wrapper container">
+    <div class="container row" id="stat-section">
+        <div class="text-center" id="attributes-headline">
+            <h4>
+                Attributes
+            </h4>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="container">
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Intelligence
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value" id="intelligence-score">
+                            <i class="far fa-circle attribute-favicon" data-atribute-id="1"></i>
+                            <i class="far fa-circle attribute-favicon" data-atribute-id="2"></i>
+                            <i class="far fa-circle attribute-favicon" data-atribute-id="3"></i>
+                            <i class="far fa-circle attribute-favicon" data-atribute-id="4"></i>
+                            <i class="far fa-circle attribute-favicon" data-atribute-id="5"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Wits
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value" id="wits-score">
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Resolve
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value" id="resolve-score">
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="container">
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Strength
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value">
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Dexterity
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value">
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Stamina
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value">
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="container">
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Presence
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value">
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Manipulation
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value">
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col attribute-name">
+                            Composure
+                        </div>
+                        <div class="col d-flex flex-row-reverse attribute-value">
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                            <i class="far fa-circle attribute-favicon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container row">
+        <div class="container skill-section col-4" id="skill-section">
+            <div class="text-center" id="skill-headline">
+                <h4>
+                    Skill
+                </h4>
+            </div>
+            <div class="container">
+                <div class="text-center" id="mental-skill-headline">
+                    <h5>
+                        Mental
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Academics
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col skill-name">
+                        Computer
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col skill-name">
+                        Crafts
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col skill-name">
+                        Investigation
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col skill-name">
+                        Medicine
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col skill-name">
+                        Occult
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col skill-name">
+                        Politics
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col skill-name">
+                        Science
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="text-center" id="physical-skill-headline">
+                    <h5>
+                        Physical
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Athletics
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Brawl
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Drive
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Firearms
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Larceny
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Stealth
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Survival
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Weaponry
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="text-center" id="social-skill-headline">
+                    <h5>
+                        Social
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Animal Ken
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Empathy
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Expression
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Intimidation
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Persuasion
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Socialize
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Streetwise
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col skill-name">
+                        Subterfuge
+                    </div>
+                    <div class="col d-flex flex-row-reverse skill-value">
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                        <i class="far fa-circle skill-favicon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container merit-section col-4" id="merit-section">
+
+        </div>
+
+        <div class="container contract-section col-4" id="contract-section">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
