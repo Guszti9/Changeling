@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, jsonify, request
 
 import queires
+import sheet_controller
 
 
 app = Flask('changeling')
@@ -8,7 +9,7 @@ app = Flask('changeling')
 
 @app.route('/character_sheet')
 def character_sheet():
-    sheet = queires.get_sheet_by_id(1);
+    sheet = sheet_controller.get_sheet(1)
     return render_template("character-sheet.html")
 
 
