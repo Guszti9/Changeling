@@ -28,12 +28,14 @@
                 Attributes
             </h4>
         </div>
-        <div class="row">
+        <div class="row" id="attributes-container">
+        {% for type, type_data in sheet["Attributes"].items() %}
             <div class="col">
                 <div class="container">
+                    {% for name, value in type_data.items() %}
                     <div class="row">
                         <div class="col attribute-name">
-                            Intelligence
+                            {{name}}
                         </div>
                         <div class="col d-flex flex-row-reverse attribute-value" id="intelligence-score">
                             <i class="far fa-circle attribute-favicon" data-atribute-id="1"></i>
@@ -43,112 +45,10 @@
                             <i class="far fa-circle attribute-favicon" data-atribute-id="5"></i>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col attribute-name">
-                            Wits
-                        </div>
-                        <div class="col d-flex flex-row-reverse attribute-value" id="wits-score">
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col attribute-name">
-                            Resolve
-                        </div>
-                        <div class="col d-flex flex-row-reverse attribute-value" id="resolve-score">
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="col">
-                <div class="container">
-                    <div class="row">
-                        <div class="col attribute-name">
-                            Strength
-                        </div>
-                        <div class="col d-flex flex-row-reverse attribute-value">
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col attribute-name">
-                            Dexterity
-                        </div>
-                        <div class="col d-flex flex-row-reverse attribute-value">
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col attribute-name">
-                            Stamina
-                        </div>
-                        <div class="col d-flex flex-row-reverse attribute-value">
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="container">
-                    <div class="row">
-                        <div class="col attribute-name">
-                            Presence
-                        </div>
-                        <div class="col d-flex flex-row-reverse attribute-value">
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col attribute-name">
-                            Manipulation
-                        </div>
-                        <div class="col d-flex flex-row-reverse attribute-value">
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col attribute-name">
-                            Composure
-                        </div>
-                        <div class="col d-flex flex-row-reverse attribute-value">
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                            <i class="far fa-circle attribute-favicon"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
