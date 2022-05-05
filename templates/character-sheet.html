@@ -18,10 +18,11 @@
 
     <!-- JS files -->
     <script type="module" src="{{ url_for('static', filename='js/characterSheet.js') }}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='js/data/dataHandler.js') }}" defer></script>
 </head>
 
 <body>
-<div id="body-wrapper container">
+<div class="body-wrapper container" id="char-sheet" data-id='{{sheet["id"]}}'>
     <div class="container row" id="first-section">
         <div class="text-center" id="attributes-headline">
             <h4>

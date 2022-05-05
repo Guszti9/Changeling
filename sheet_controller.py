@@ -60,3 +60,24 @@ def get_skills(skills_string):
 
     return skills
 
+
+def update_attr(attr_name, attr_value, sheet_id):
+    attr_string = queires.get_sheet_by_id(sheet_id)["attributes"]
+
+    attributes = get_attributes(attr_string)
+    for type, attr_type in attributes.items():
+        for name, value in attr_type.items():
+            if name == attr_name:
+                attributes[type][name] = attr_value
+
+    attr_string = create_string_from_dict(attributes)
+    queires.update_attr_by_sheet_id(attr_string, sheet_id)
+
+
+def create_string_from_dict(dict):
+    str = ""
+    for type in dict:
+        str += ",".join([value for name, value in dict[type].items()])
+        str += "|"
+    return str[0:-1]
+
