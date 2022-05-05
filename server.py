@@ -10,7 +10,7 @@ app = Flask('changeling')
 @app.route('/character_sheet')
 def character_sheet():
     sheet = sheet_controller.get_sheet(1)
-    return render_template("character-sheet.html")
+    return render_template("character-sheet.html", sheet=sheet)
 
 
 def main():
