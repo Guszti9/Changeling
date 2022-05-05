@@ -37,12 +37,12 @@
                         <div class="col attribute-name">
                             {{name}}
                         </div>
-                        <div class="col d-flex flex-row attribute-value" id="intelligence-score">
+                        <div class="col d-flex flex-row attribute-value" data-name="{{name}}">
                             {% for i in range(5) %}
                                 {% if value | int < i + 1 %}
-                                    <i class="far fa-circle attribute-favicon" data-atribute-id="{{i + 1}}"></i>
+                                    <i class="far fa-circle attribute-favicon" data-ind="{{i + 1}}"></i>
                                 {% else %}
-                                    <i class="far fa-times-circle attribute-favicon" data-atribute-id="{{i + 1}}"></i>
+                                    <i class="far fa-times-circle attribute-favicon" data-ind="{{i + 1}}"></i>
                                 {% endif %}
                             {% endfor %}
                         </div>
@@ -63,7 +63,7 @@
             </div>
             {% for type, type_data in sheet["Skills"].items() %}
             <div class="container">
-                <div class="text-center" id="mental-skill-headline">
+                <div class="text-center" id="skill-headline">
                     <h5>
                         {{type}}
                     </h5>
@@ -73,12 +73,12 @@
                     <div class="col skill-name">
                         {{name}}
                     </div>
-                    <div class="col d-flex flex-row skill-value">
+                    <div class="col d-flex flex-row skill-value" data-name="{{name}}">
                         {% for i in range(5) %}
                             {% if value | int < i + 1 %}
-                                <i class="far fa-circle skill-favicon" data-atribute-id="{{i + 1}}"></i>
+                                <i class="far fa-circle skill-favicon" data-ind="{{i + 1}}"></i>
                             {% else %}
-                                <i class="far fa-times-circle skill-favicon" data-atribute-id="{{i + 1}}"></i>
+                                <i class="far fa-times-circle skill-favicon" data-ind="{{i + 1}}"></i>
                             {% endif %}
                         {% endfor %}
                     </div>
