@@ -5,7 +5,7 @@ export let dataHandler = {
   },
 
   updateSkill: async function (data) {
-    const response = await apiPut(`/api/sheet/update_skill`, datas);
+    const response = await apiPut(`/api/sheet/update_skill`, data);
     return response;
   }
 };

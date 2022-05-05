@@ -17,6 +17,14 @@ def character_sheet():
 def update_attr():
     if request.method == 'PUT':
         sheet_controller.update_attr(request.json['name'], request.json['value'], request.json['id'])
+        return jsonify({"massage": "ok"})
+
+
+@app.route('/api/sheet/update_skill', methods=['PUT'])
+def update_skill():
+    if request.method == 'PUT':
+        sheet_controller.update_skill(request.json['name'], request.json['value'], request.json['id'])
+        return jsonify({"massage": "ok"})
 
 
 def main():
