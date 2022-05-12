@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, jsonify, request
 
 import queires
 import sheet_controller
+import contract_controller
 
 
 app = Flask('changeling')
@@ -25,6 +26,12 @@ def update_skill():
     if request.method == 'PUT':
         sheet_controller.update_skill(request.json['name'], request.json['value'], request.json['id'])
         return jsonify({"massage": "ok"})
+
+
+@app.route('/api/contract', methods=['GET'])
+def contract():
+    contracts = contract_controller.get_contracts()
+    return render_template("contract.html", contracts=contracts)
 
 
 def main():
