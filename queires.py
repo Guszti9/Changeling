@@ -5,7 +5,13 @@ import json
 def get_contracts():
     contracts = data_manager.execute_select(
         """
-        SELECT * FROM contract;
+        SELECT 
+            cg.name AS group_name,
+            contract.name As name,
+            type
+        FROM contract
+        JOIN contract_group cg on contract.contract_group_id = cg.id;
+        
         """)
     return contracts
 
