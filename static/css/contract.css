@@ -30,3 +30,15 @@
 .more-data {
     cursor: pointer;
 }
+
+#group-select {
+    width: min-content;
+}
+
+#type-select {
+    width: min-content;
+}
+
+.inline-form-element {
+    margin: 5px;
+}

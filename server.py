@@ -28,10 +28,15 @@ def update_skill():
         return jsonify({"massage": "ok"})
 
 
-@app.route('/api/contract', methods=['GET'])
+@app.route('/api/contract', methods=['GET', 'POST'])
 def contract():
-    contracts = contract_controller.get_contracts()
-    return render_template("contract.html", contracts=contracts)
+    if request.method == 'GET':
+        contracts = contract_controller.get_contracts()
+        contract_groups = contract_controller.get_groups()
+        return render_template("contract.html", contracts=contracts, contract_groups=contract_groups)
+    if request.method == 'POST':
+        contract_controller.add_contract(request.json)
+        return jsonify({"massage": "ok"})
 
 
 def main():

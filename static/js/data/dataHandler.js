@@ -7,6 +7,11 @@ export let dataHandler = {
   updateSkill: async function (data) {
     const response = await apiPut(`/api/sheet/update_skill`, data);
     return response;
+  },
+
+  addContract: async function (data) {
+    const response = await apiPost(`/api/contract`, data);
+    return response;
   }
 };
 
