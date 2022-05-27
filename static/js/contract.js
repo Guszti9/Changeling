@@ -18,6 +18,7 @@ function addEventListenerToAllMoreData() {
     document.querySelectorAll(".more-data").forEach(e => e.addEventListener(
         "click",
         async function(e) {
+            document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractData();
             let id = e.currentTarget.getAttribute("data-id");
             const data = await dataHandler.getContract(id);
             addDataToMoreDataModal(data)
