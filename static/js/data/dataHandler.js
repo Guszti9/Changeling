@@ -1,4 +1,9 @@
 export let dataHandler = {
+  getContract: async function (id) {
+    const response = await apiGet(`/api/contract/${id}`);
+    return response;
+  },
+
   updateAttr: async function (data) {
     const response = await apiPut(`/api/sheet/update_attr`, data);
     return response;

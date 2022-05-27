@@ -17,8 +17,10 @@ function addEventListenerToAddContract() {
 function addEventListenerToAllMoreData() {
     document.querySelectorAll(".more-data").forEach(e => e.addEventListener(
         "click",
-        function(e) {
-            console.log("yay");
+        async function(e) {
+            let id = e.currentTarget.getAttribute("data-id");
+            const data = await dataHandler.getContract(id);
+            console.log(data);
         }
     ));
 }

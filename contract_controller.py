@@ -5,6 +5,10 @@ def get_contracts():
     return queires.get_contracts()
 
 
+def get_contract_by_id(id):
+    return queires.get_contract_by_id(id)
+
+
 def get_names():
     names = queires.get_contarct_names()
     name_list = []
