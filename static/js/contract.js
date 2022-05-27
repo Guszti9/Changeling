@@ -1,16 +1,28 @@
 import { dataHandler } from "./data/dataHandler.js";
 import { contractFactory } from "./htmlFactory/contractFactory.js"
 
-document.querySelector('#add-contract-finisher').addEventListener(
-    "click",
-    async function() {
-        let data = createData();
-        let response = await dataHandler.addContract(data);
-        if (response.massage === "ok") {
-            addContract(data)
+function addEventListenerToAddContract() {
+    document.querySelector('#add-contract-finisher').addEventListener(
+        "click",
+        async function() {
+            let data = createData();
+            let response = await dataHandler.addContract(data);
+            if (response.massage === "ok") {
+                addContract(data)
+            }
         }
-    }
-);
+    );
+}
+
+function addEventListenerToAllMoreData() {
+    document.querySelectorAll(".more-data").forEach(e => e.addEventListener(
+        "click",
+        function(e) {
+            console.log("yay");
+        }
+    ));
+}
+
 
 function addContract(data) {
     document.querySelector("#contracts-container").innerHTML += contractFactory.createContract(data);
@@ -33,3 +45,10 @@ function createData() {
         dicePool: dicePool
     };
 }
+
+function init() {
+    addEventListenerToAddContract();
+    addEventListenerToAllMoreData();
+}
+
+init();
