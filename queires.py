@@ -5,8 +5,18 @@ import json
 def get_contract_by_id(id):
     contract = data_manager.execute_select(
         """
-        SELECT * FROM contract
-        WHERE id = %(id)s
+        SELECT
+            cg.name AS group_name,
+            contract.name AS name,
+            contract.description AS description,
+            loophole,
+            cost,
+            dice_pool,
+            dice_pool_against,
+            type
+        FROM contract
+        JOIN contract_group cg on contract.contract_group_id = cg.id
+        WHERE contract.id = %(id)s
         """, {"id": id}, False)
     return contract
 

@@ -20,9 +20,20 @@ function addEventListenerToAllMoreData() {
         async function(e) {
             let id = e.currentTarget.getAttribute("data-id");
             const data = await dataHandler.getContract(id);
-            console.log(data);
+            addDataToMoreDataModal(data)
         }
     ));
+}
+
+function addDataToMoreDataModal(data) {
+    document.querySelector("#contractTitle").innerText = data.name;
+    document.querySelector("#contractGroup").innerText = data.group_name;
+    document.querySelector("#contractDescription").innerText = data.description;
+    document.querySelector("#contractLoopHole").innerText = data.loophole;
+    document.querySelector("#contractCost").innerText = data.cost
+    document.querySelector("#contractType").innerText = data.type;
+    document.querySelector("#contractDicePool").innerText = data.dice_pool;
+    document.querySelector("#contractDicePoolAgainst").innerText = data.dice_pool_against;
 }
 
 
