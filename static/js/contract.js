@@ -1,7 +1,20 @@
 import { dataHandler } from "./data/dataHandler.js";
 import { contractFactory } from "./htmlFactory/contractFactory.js"
 
+
 function addEventListenerToAddContract() {
+    document.querySelector('#add-contract').addEventListener(
+        "click",
+        function() {
+            dataHandler.getContractGroups().then(groupNames => {
+                document.querySelector("#contract-add-modal").innerHTML = contractFactory.createContractForm(groupNames);
+                addEventListenerToAddContractFinisher();
+            })
+        }
+    )
+}
+
+function addEventListenerToAddContractFinisher() {
     document.querySelector('#add-contract-finisher').addEventListener(
         "click",
         async function() {

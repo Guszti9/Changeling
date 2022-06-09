@@ -14,14 +14,14 @@ def character_sheet():
     return render_template("character-sheet.html", sheet=sheet)
 
 
-@app.route('/api/sheet/update_attr', methods=['PUT'])
+@app.route('/sheet/update_attr', methods=['PUT'])
 def update_attr():
     if request.method == 'PUT':
         sheet_controller.update_attr(request.json['name'], request.json['value'], request.json['id'])
         return jsonify({"massage": "ok"})
 
 
-@app.route('/api/sheet/update_skill', methods=['PUT'])
+@app.route('/sheet/update_skill', methods=['PUT'])
 def update_skill():
     if request.method == 'PUT':
         sheet_controller.update_skill(request.json['name'], request.json['value'], request.json['id'])
@@ -39,10 +39,15 @@ def contract():
         return jsonify({"massage": "ok"})
 
 
-@app.route('/api/contract/<id>', methods=['GET'])
+@app.route('/contract/<id>', methods=['GET'])
 def api_contract(id):
     if request.method == 'GET':
         return jsonify(contract_controller.get_contract_by_id(id))
+
+
+@app.route('/contract_group/names', methods=['GET'])
+def get_all_group_name():
+    return jsonify(contract_controller.get_groups())
 
 
 def main():

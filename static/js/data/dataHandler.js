@@ -1,21 +1,26 @@
 export let dataHandler = {
   getContract: async function (id) {
-    const response = await apiGet(`/api/contract/${id}`);
+    const response = await apiGet(`/contract/${id}`);
+    return response;
+  },
+
+  getContractGroups: async function () {
+    const response = await apiGet(`/contract_group/names`);
     return response;
   },
 
   updateAttr: async function (data) {
-    const response = await apiPut(`/api/sheet/update_attr`, data);
+    const response = await apiPut(`/sheet/update_attr`, data);
     return response;
   },
 
   updateSkill: async function (data) {
-    const response = await apiPut(`/api/sheet/update_skill`, data);
+    const response = await apiPut(`/sheet/update_skill`, data);
     return response;
   },
 
   addContract: async function (data) {
-    const response = await apiPost(`/api/contract`, data);
+    const response = await apiPost(`/contract`, data);
     return response;
   }
 };
