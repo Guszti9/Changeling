@@ -34,7 +34,7 @@
 
     <div class="container" id="contracts-container">
         {% for contract in contracts %}
-        <div class="card contract-card">
+        <div class="card contract-card" data-id="{{contract.id}}">
             <div class="card-body">
                 <h5 class="card-title">{{contract.name}}</h5>
                 <h6 class="card-subtitle mb-2">{{contract.group_name}}</h6>

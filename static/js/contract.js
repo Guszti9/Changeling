@@ -2,7 +2,6 @@ import { dataHandler } from "./data/dataHandler.js";
 import { contractFactory } from "./htmlFactory/contractFactory.js"
 
 let contractData;
-let allContractData;
 
 function addEventListenerToAddContract() {
     document.querySelector('#add-contract').addEventListener(
@@ -55,9 +54,10 @@ function addEventListenerToEditContractFinisher() {
         "click",
         async function() {
             let data = createData();
+            data.id = contractData.id;
             let response = await dataHandler.updateContract(contractData.id, data);
             if (response.massage === "ok") {
-                console.log("acsca")
+                updateContract(contractData.id, data);
             }
         }
     )
@@ -92,6 +92,15 @@ function addContract(data) {
         "click",
         clickToMore
     )
+}
+
+function deleteContract(id) {
+    document.querySelector(`.contract-card[data-id="${id}"]`).remove();
+}
+
+function updateContract(id, data) {
+    deleteContract(id);
+    addContract(data);
 }
 
 function createData() {

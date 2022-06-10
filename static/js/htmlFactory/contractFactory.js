@@ -1,7 +1,7 @@
 export let contractFactory = {
     createContract: function createContract(data) {
         return `
-            <div class="card contract-card">
+            <div class="card contract-card" data-id="${data.id}">
                 <div class="card-body">
                     <h5 class="card-title">${data.name}</h5>
                     <h6 class="card-subtitle mb-2">${data.groupName}</h6>
