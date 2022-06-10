@@ -24,6 +24,7 @@ function addEventListenerToAddContractFinisher() {
             if (response.massage === "ok") {
                 data.id = response.id;
                 addContract(data);
+
             }
         }
     );
@@ -58,6 +59,7 @@ function addEventListenerToEditContractFinisher() {
             let response = await dataHandler.updateContract(contractData.id, data);
             if (response.massage === "ok") {
                 updateContract(contractData.id, data);
+                loadContractData(contractData.id);
             }
         }
     )
@@ -122,8 +124,12 @@ function createData() {
 }
 
 async function clickToMore(e) {
-    document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractData();
     let id = e.currentTarget.getAttribute("data-id");
+    loadContractData(id);
+}
+
+async function loadContractData(id) {
+    document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractData();
     contractData = await dataHandler.getContract(id);
     addDataToMoreDataModal(contractData);
     addEventListenerToEditContract();
