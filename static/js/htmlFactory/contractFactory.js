@@ -44,7 +44,7 @@ export let contractFactory = {
         `
     },
 
-    createContractForm: function createContractForm(groupNames) {
+    createContractForm: function createContractForm(groupNames, isAdd) {
         let options = "";
         for (let name of groupNames) {
             options += `<option> ${name} </option>`;
@@ -53,7 +53,7 @@ export let contractFactory = {
         return `
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add contract</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel"> ${isAdd ? "Add contract" : "Edit contract"}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -99,7 +99,10 @@ export let contractFactory = {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="add-contract-finisher">Understood</button>
+                    <button type="button" class="btn btn-primary"
+                            id="${isAdd ? "add-contract-finisher" : "edit-contract-finisher"}">
+                        Update
+                    </button>
                 </div>
             </div>
         `

@@ -6,6 +6,7 @@ def get_contract_by_id(id):
     contract = data_manager.execute_select(
         """
         SELECT
+            contract.id AS id,
             cg.name AS group_name,
             contract.name AS name,
             contract.description AS description,
@@ -62,6 +63,23 @@ def get_sheet_by_id(sheet_id):
         """
         , {"board_id": sheet_id}, False)
     return sheet
+
+
+def update_contract(id, name, type, group_id, description, loophole, dice_pool):
+    data_manager.execute_insert(
+        """
+        UPDATE contract
+        SET
+            name = %(name)s,
+            type = %(type)s,
+            contract_group_id = %(group_id)s,
+            description = %(description)s,
+            loophole = %(loophole)s,
+            dice_pool = %(dice_pool)s
+        WHERE id = %(id)s
+        """, {"id": id, "name": name, "type": type, "group_id": group_id, "description": description,
+              "loophole": loophole, "dice_pool": dice_pool}
+    )
 
 
 def update_attr_by_sheet_id(attr_str, sheet_id):

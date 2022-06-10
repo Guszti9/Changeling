@@ -9,6 +9,11 @@ export let dataHandler = {
     return response;
   },
 
+  updateContract: async function(id, data) {
+    const response = await apiPut(`/contract/${id}`, data);
+    return response;
+  },
+
   updateAttr: async function (data) {
     const response = await apiPut(`/sheet/update_attr`, data);
     return response;

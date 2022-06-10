@@ -9,7 +9,7 @@ function addEventListenerToAddContract() {
         "click",
         function() {
             dataHandler.getContractGroups().then(groupNames => {
-                document.querySelector("#contract-add-modal").innerHTML = contractFactory.createContractForm(groupNames);
+                document.querySelector("#contract-add-modal").innerHTML = contractFactory.createContractForm(groupNames, true);
                 addEventListenerToAddContractFinisher();
             })
         }
@@ -47,10 +47,23 @@ function addEventListenerToEditContract() {
         "click",
         async function() {
             dataHandler.getContractGroups().then(groupNames => {
-                document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractForm(groupNames);
+                document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractForm(groupNames, false);
                 addDataToEditContract(contractData);
-                addEventListenerToAddContractFinisher();
+                addEventListenerToEditContractFinisher();
             })
+        }
+    )
+}
+
+function addEventListenerToEditContractFinisher() {
+    document.querySelector("#edit-contract-finisher").addEventListener(
+        "click",
+        async function() {
+            let data = createData();
+            let response = await dataHandler.updateContract(contractData.id, data);
+            if (response.massage === "ok") {
+                console.log("acsca")
+            }
         }
     )
 }
