@@ -1,6 +1,7 @@
 import { dataHandler } from "./data/dataHandler.js";
 import { contractFactory } from "./htmlFactory/contractFactory.js"
 
+let ContractDataList = [];
 let contractData;
 
 function addEventListenerToAddContract() {
@@ -23,8 +24,8 @@ function addEventListenerToAddContractFinisher() {
             let response = await dataHandler.addContract(data);
             if (response.massage === "ok") {
                 data.id = response.id;
+                addToContractDataList(CreateDataForContractDataList(data));
                 addContract(data);
-
             }
         }
     );
@@ -55,10 +56,12 @@ function addEventListenerToEditContractFinisher() {
         "click",
         async function() {
             let data = createData();
-            data.id = contractData.id;
-            let response = await dataHandler.updateContract(contractData.id, data);
+            let id = contractData.id
+            data.id = id;
+            let response = await dataHandler.updateContract(id, data);
             if (response.massage === "ok") {
-                updateContract(contractData.id, data);
+                updateContract(id, data);
+                updateElemOfContractDataList(id, CreateDataForContractDataList(data));
                 loadContractData(contractData.id);
             }
         }
@@ -85,24 +88,6 @@ function addDataToEditContract(data) {
     document.querySelector("#loophole-input").value = data.loophole;
     document.querySelector("#dice-pool-input").value = data.dice_pool;
     document.querySelector("#dice-pool-against-input").value = data.dice_pool_against;
-}
-
-
-function addContract(data) {
-    document.querySelector("#contracts-container").innerHTML += contractFactory.createContract(data);
-    document.querySelector(`.more-data[data-id="${data.id}"]`).addEventListener(
-        "click",
-        clickToMore
-    )
-}
-
-function deleteContract(id) {
-    document.querySelector(`.contract-card[data-id="${id}"]`).remove();
-}
-
-function updateContract(id, data) {
-    deleteContract(id);
-    addContract(data);
 }
 
 function createData() {
@@ -135,9 +120,76 @@ async function loadContractData(id) {
     addEventListenerToEditContract();
 }
 
+// Contract Manager
+function addContract(data) {
+    let ind = getPreviesElemInd(data.id);
+    let contractContainer = document.querySelector("#contracts-container");
+    contractContainer.innerHTML += contractFactory.createContract(data);
+    let newElement = contractContainer.children[contractContainer.children.length - 1];
+    if (ind < ContractDataList.length) {
+        contractContainer.insertBefore(newElement, contractContainer.children[ind]);
+    }
+    document.querySelector(`.more-data[data-id="${data.id}"]`).addEventListener(
+        "click",
+        clickToMore
+    )
+}
+
+function deleteContract(id) {
+    document.querySelector(`.contract-card[data-id="${id}"]`).remove();
+}
+
+function updateContract(id, data) {
+    deleteContract(id);
+    addContract(data);
+}
+
+// ContractDataList Manager
+function CreateDataForContractDataList(data) {
+    return {
+        id: data.id,
+        name: data.name,
+        group_name: data.groupName,
+        type: data.type
+    }
+}
+
+function addToContractDataList(data) {
+    let ind = 0;
+    while (data.group_name > ContractDataList[ind].group_name &&
+           data.name > ContractDataList[ind].name
+           && ind < data.length) {
+        ind += 1;
+    }
+    ContractDataList.splice(ind, 0, data);
+}
+
+function deleteFromContractDataList(id) {
+    ContractDataList.filter(elem => {
+        elem.id === id;
+    })
+}
+
+function updateElemOfContractDataList(id, data) {
+    deleteFromContractDataList(id);
+    addToContractDataList(data);
+}
+
+function getPreviesElemInd(id) {
+    let ind = 0;
+    while (ContractDataList[ind + 1].id !== id && ind < ContractDataList.length - 1) {
+        ind += 1;
+    }
+    return ind;
+}
+
+// Init
 function init() {
     addEventListenerToAddContract();
     addEventListenerToAllMoreData();
+    dataHandler.getAllContract().then(result => {
+        ContractDataList = result;
+    })
 }
 
 init();

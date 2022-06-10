@@ -31,7 +31,8 @@ def get_contracts():
             contract.id As id,
             type
         FROM contract
-        JOIN contract_group cg on contract.contract_group_id = cg.id;
+        JOIN contract_group cg on contract.contract_group_id = cg.id
+        ORDER BY group_name, name;
         """)
     return contracts
 

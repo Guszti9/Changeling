@@ -9,6 +9,11 @@ export let dataHandler = {
     return response;
   },
 
+  getAllContract: async function () {
+    const response = await apiGet(`/contract/all`);
+    return response;
+  },
+
   updateContract: async function(id, data) {
     const response = await apiPut(`/contract/${id}`, data);
     return response;

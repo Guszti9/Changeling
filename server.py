@@ -39,6 +39,12 @@ def contract():
         return jsonify({"massage": "ok", "id": id})
 
 
+@app.route('/contract/all', methods=['GET'])
+def get_all_contact():
+    if request.method == 'GET':
+        return jsonify(contract_controller.get_contracts())
+
+
 @app.route('/contract/<id>', methods=['GET', 'PUT'])
 def api_contract(id):
     if request.method == 'GET':
