@@ -2,7 +2,7 @@ import { dataHandler } from "./data/dataHandler.js";
 import { contractFactory } from "./htmlFactory/contractFactory.js"
 
 let contractData;
-
+let allContractData;
 
 function addEventListenerToAddContract() {
     document.querySelector('#add-contract').addEventListener(
@@ -23,7 +23,8 @@ function addEventListenerToAddContractFinisher() {
             let data = createData();
             let response = await dataHandler.addContract(data);
             if (response.massage === "ok") {
-                addContract(data)
+                data.id = response.id;
+                addContract(data);
             }
         }
     );
@@ -32,13 +33,7 @@ function addEventListenerToAddContractFinisher() {
 function addEventListenerToAllMoreData() {
     document.querySelectorAll(".more-data").forEach(e => e.addEventListener(
         "click",
-        async function(e) {
-            document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractData();
-            let id = e.currentTarget.getAttribute("data-id");
-            contractData = await dataHandler.getContract(id);
-            addDataToMoreDataModal(contractData);
-            addEventListenerToEditContract();
-        }
+        clickToMore
     ));
 }
 
@@ -93,6 +88,10 @@ function addDataToEditContract(data) {
 
 function addContract(data) {
     document.querySelector("#contracts-container").innerHTML += contractFactory.createContract(data);
+    document.querySelector(`.more-data[data-id="${data.id}"]`).addEventListener(
+        "click",
+        clickToMore
+    )
 }
 
 function createData() {
@@ -111,6 +110,14 @@ function createData() {
         loophole: loophole,
         dicePool: dicePool
     };
+}
+
+async function clickToMore(e) {
+    document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractData();
+    let id = e.currentTarget.getAttribute("data-id");
+    contractData = await dataHandler.getContract(id);
+    addDataToMoreDataModal(contractData);
+    addEventListenerToEditContract();
 }
 
 function init() {

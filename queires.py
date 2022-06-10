@@ -17,7 +17,7 @@ def get_contract_by_id(id):
             type
         FROM contract
         JOIN contract_group cg on contract.contract_group_id = cg.id
-        WHERE contract.id = %(id)s
+        WHERE contract.id = %(id)s;
         """, {"id": id}, False)
     return contract
 
@@ -60,8 +60,7 @@ def get_sheet_by_id(sheet_id):
         """
         SELECT * FROM sheet
         WHERE id = %(board_id)s;
-        """
-        , {"board_id": sheet_id}, False)
+        """, {"board_id": sheet_id}, False)
     return sheet
 
 
@@ -76,7 +75,7 @@ def update_contract(id, name, type, group_id, description, loophole, dice_pool):
             description = %(description)s,
             loophole = %(loophole)s,
             dice_pool = %(dice_pool)s
-        WHERE id = %(id)s
+        WHERE id = %(id)s;
         """, {"id": id, "name": name, "type": type, "group_id": group_id, "description": description,
               "loophole": loophole, "dice_pool": dice_pool}
     )
@@ -101,10 +100,10 @@ def update_skills_by_sheet_id(skills_str, sheet_id):
 
 
 def add_contract(name, type, group_id, description, loophole, dice_pool):
-    data_manager.execute_insert(
+    return data_manager.execute_select(
         """
         INSERT INTO contract (name, type, contract_group_id, description, loophole, dice_pool)
-        VALUES (%(name)s, %(type)s, %(group_id)s, %(description)s, %(loophole)s, %(dice_pool)s);
+        VALUES (%(name)s, %(type)s, %(group_id)s, %(description)s, %(loophole)s, %(dice_pool)s)
+        RETURNING id;
         """, {"name": name, "type": type, "group_id": group_id,
-              "description": description, "loophole": loophole, "dice_pool": dice_pool})
-
+              "description": description, "loophole": loophole, "dice_pool": dice_pool}, False)

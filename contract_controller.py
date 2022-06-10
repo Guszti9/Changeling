@@ -13,8 +13,8 @@ def edit_contract(id, data):
 
 def add_contract(data):
     group_id = queires.get_contract_group_id_by_name(data["groupName"])["id"]
-    queires.add_contract(data["name"], data["type"], group_id, data["description"], data["loophole"],
-                         data["dicePool"])
+    return queires.add_contract(data["name"], data["type"], group_id, data["description"], data["loophole"],
+                                data["dicePool"])["id"]
 
 
 def get_contract_by_id(id):

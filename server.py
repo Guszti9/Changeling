@@ -35,8 +35,8 @@ def contract():
         contract_groups = contract_controller.get_groups()
         return render_template("contract.html", contracts=contracts, contract_groups=contract_groups)
     if request.method == 'POST':
-        contract_controller.add_contract(request.json)
-        return jsonify({"massage": "ok"})
+        id = contract_controller.add_contract(request.json)
+        return jsonify({"massage": "ok", "id": id})
 
 
 @app.route('/contract/<id>', methods=['GET', 'PUT'])
