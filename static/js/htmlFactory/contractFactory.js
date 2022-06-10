@@ -38,6 +38,7 @@ export let contractFactory = {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="edit-contract">Edit Contract</button>
                 </div>
             </div>
         `
@@ -45,7 +46,6 @@ export let contractFactory = {
 
     createContractForm: function createContractForm(groupNames) {
         let options = "";
-        console.log(groupNames);
         for (let name of groupNames) {
             options += `<option> ${name} </option>`;
         }

@@ -1,6 +1,8 @@
 import { dataHandler } from "./data/dataHandler.js";
 import { contractFactory } from "./htmlFactory/contractFactory.js"
 
+let contractData;
+
 
 function addEventListenerToAddContract() {
     document.querySelector('#add-contract').addEventListener(
@@ -33,10 +35,24 @@ function addEventListenerToAllMoreData() {
         async function(e) {
             document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractData();
             let id = e.currentTarget.getAttribute("data-id");
-            const data = await dataHandler.getContract(id);
-            addDataToMoreDataModal(data)
+            contractData = await dataHandler.getContract(id);
+            addDataToMoreDataModal(contractData);
+            addEventListenerToEditContract();
         }
     ));
+}
+
+function addEventListenerToEditContract() {
+    document.querySelector("#edit-contract").addEventListener(
+        "click",
+        async function() {
+            dataHandler.getContractGroups().then(groupNames => {
+                document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractForm(groupNames);
+                addDataToEditContract(contractData);
+                addEventListenerToAddContractFinisher();
+            })
+        }
+    )
 }
 
 function addDataToMoreDataModal(data) {
@@ -48,6 +64,17 @@ function addDataToMoreDataModal(data) {
     document.querySelector("#contractType").innerText = data.type;
     document.querySelector("#contractDicePool").innerText = data.dice_pool;
     document.querySelector("#contractDicePoolAgainst").innerText = data.dice_pool_against;
+}
+
+
+function addDataToEditContract(data) {
+    document.querySelector("#contract-name-input").value = data.name;
+    document.querySelector("#group-select").value = data.group_name;
+    document.querySelector("#type-select").value = data.type;
+    document.querySelector("#contract-description-input").value = data.description;
+    document.querySelector("#loophole-input").value = data.loophole;
+    document.querySelector("#dice-pool-input").value = data.dice_pool;
+    document.querySelector("#dice-pool-against-input").value = data.dice_pool_against;
 }
 
 
