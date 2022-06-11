@@ -10,7 +10,7 @@ export let contractFactory = {
                             <p>${data.type}</p>
                         </div>
                         <div class="card-bottom-part">
-                            <p class="more-data" data-bs-toggle="modal" data-bs-target="#mora-data-contract-modal" data-id="${data.id}"> more </p>
+                            <p class="more-data" data-bs-toggle="modal" data-bs-target="#contract-modal" data-id="${data.id}"> more </p>
                         </div>
                     </div>
                 </div>

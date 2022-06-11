@@ -27,7 +27,7 @@
 <body>
 <div class="body-wrapper container" id="char-contract">
     <div>
-        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#add-contract-modal" id="add-contract">
+        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#contract-modal" id="add-contract">
             add contract
         </button>
     </div>
@@ -43,7 +43,7 @@
                         <p> {{contract.type}} </p>
                     </div>
                     <div class="card-bottom-part">
-                        <p class="more-data" data-bs-toggle="modal" data-bs-target="#mora-data-contract-modal" data-id="{{contract.id}}"> more </p>
+                        <p class="more-data" data-bs-toggle="modal" data-bs-target="#contract-modal" data-id="{{contract.id}}"> more </p>
                     </div>
                 </div>
             </div>
@@ -53,17 +53,8 @@
 </div>
 
 
-<! -- Add contract modal -->
-<div class="modal fade" id="add-contract-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" id="contract-add-modal">
-
-    </div>
-</div>
-
-
-<! -- More Data Contract Modal -->
-<div class="modal fade" id="mora-data-contract-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" id="contract-data-modal">
+<div class="modal fade" id="contract-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" id="contract-modal-dialog">
 
     </div>
 </div>

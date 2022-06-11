@@ -9,7 +9,7 @@ function addEventListenerToAddContract() {
         "click",
         function() {
             dataHandler.getContractGroups().then(groupNames => {
-                document.querySelector("#contract-add-modal").innerHTML = contractFactory.createContractForm(groupNames, true);
+                document.querySelector("#contract-modal-dialog").innerHTML = contractFactory.createContractForm(groupNames, true);
                 addEventListenerToAddContractFinisher();
             })
         }
@@ -24,7 +24,6 @@ function addEventListenerToAddContractFinisher() {
             let response = await dataHandler.addContract(data);
             if (response.massage === "ok") {
                 data.id = response.id;
-                addToContractDataList(CreateDataForContractDataList(data));
                 addContract(data);
             }
         }
@@ -43,7 +42,7 @@ function addEventListenerToEditContract() {
         "click",
         async function() {
             dataHandler.getContractGroups().then(groupNames => {
-                document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractForm(groupNames, false);
+                document.querySelector("#contract-modal-dialog").innerHTML = contractFactory.createContractForm(groupNames, false);
                 addDataToEditContract(contractData);
                 addEventListenerToEditContractFinisher();
             })
@@ -61,7 +60,6 @@ function addEventListenerToEditContractFinisher() {
             let response = await dataHandler.updateContract(id, data);
             if (response.massage === "ok") {
                 updateContract(id, data);
-                updateElemOfContractDataList(id, CreateDataForContractDataList(data));
                 loadContractData(contractData.id);
             }
         }
@@ -114,7 +112,7 @@ async function clickToMore(e) {
 }
 
 async function loadContractData(id) {
-    document.querySelector("#contract-data-modal").innerHTML = contractFactory.createContractData();
+    document.querySelector("#contract-modal-dialog").innerHTML = contractFactory.createContractData();
     contractData = await dataHandler.getContract(id);
     addDataToMoreDataModal(contractData);
     addEventListenerToEditContract();
@@ -122,20 +120,19 @@ async function loadContractData(id) {
 
 // Contract Manager
 function addContract(data) {
-    let ind = getPreviesElemInd(data.id);
+    addToContractDataList(CreateDataForContractDataList(data));
+    let ind = getNextElemInd(data.id);
     let contractContainer = document.querySelector("#contracts-container");
     contractContainer.innerHTML += contractFactory.createContract(data);
     let newElement = contractContainer.children[contractContainer.children.length - 1];
     if (ind < ContractDataList.length) {
         contractContainer.insertBefore(newElement, contractContainer.children[ind]);
     }
-    document.querySelector(`.more-data[data-id="${data.id}"]`).addEventListener(
-        "click",
-        clickToMore
-    )
+    addEventListenerToAllMoreData();
 }
 
 function deleteContract(id) {
+    deleteFromContractDataList(id);
     document.querySelector(`.contract-card[data-id="${id}"]`).remove();
 }
 
@@ -155,19 +152,12 @@ function CreateDataForContractDataList(data) {
 }
 
 function addToContractDataList(data) {
-    let ind = 0;
-    while (data.group_name > ContractDataList[ind].group_name &&
-           data.name > ContractDataList[ind].name
-           && ind < data.length) {
-        ind += 1;
-    }
-    ContractDataList.splice(ind, 0, data);
+    ContractDataList.push(data);
+    ContractDataList.sort(sorter(elem => elem.group_name, elem => elem.name));
 }
 
 function deleteFromContractDataList(id) {
-    ContractDataList.filter(elem => {
-        elem.id === id;
-    })
+    ContractDataList = ContractDataList.filter(elem => elem.id !== id)
 }
 
 function updateElemOfContractDataList(id, data) {
@@ -175,12 +165,22 @@ function updateElemOfContractDataList(id, data) {
     addToContractDataList(data);
 }
 
-function getPreviesElemInd(id) {
+function getNextElemInd(id) {
     let ind = 0;
-    while (ContractDataList[ind + 1].id !== id && ind < ContractDataList.length - 1) {
+    while (ContractDataList[ind].id !== id && ind < ContractDataList.length) {
         ind += 1;
     }
     return ind;
+}
+
+const sorter = (func1, func2) => (a, b) => {
+    if (func1(a) < func1(b)) return -1;
+    if (func1(0) > func1(b)) return 1;
+
+    if (func2(a) < func2(b)) return -1;
+    if (func2(a) > func2(b)) return 1;
+
+    return 0;
 }
 
 // Init
