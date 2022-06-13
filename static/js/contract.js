@@ -153,7 +153,8 @@ function CreateDataForContractDataList(data) {
 
 function addToContractDataList(data) {
     ContractDataList.push(data);
-    ContractDataList.sort(sorter(elem => elem.group_name, elem => elem.name));
+    ContractDataList.sort(sorter(elem => elem.group_name?.toLowerCase(),
+                                 elem => elem.name?.toLowerCase()));
 }
 
 function deleteFromContractDataList(id) {

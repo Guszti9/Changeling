@@ -25,30 +25,53 @@
 </head>
 
 <body>
-<div class="body-wrapper container" id="char-contract">
-    <div>
-        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#contract-modal" id="add-contract">
-            add contract
-        </button>
+<div class="body-wrapper container" id="body">
+
+    <div class="row">
+        <div class="col">
+            <div class="contract-body-elem" id="search-filter-bar">
+                <button type="button" class="" data-bs-toggle="modal" data-bs-target="#contract-modal" id="add-contract">
+                    add contract
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="container" id="contracts-container">
-        {% for contract in contracts %}
-        <div class="card contract-card" data-id="{{contract.id}}">
-            <div class="card-body">
-                <h5 class="card-title">{{contract.name}}</h5>
-                <h6 class="card-subtitle mb-2">{{contract.group_name}}</h6>
-                <div class="d-flex flex-row card-bottom">
-                    <div class="card-bottom-part">
-                        <p> {{contract.type}} </p>
+    <div class="row">
+        <div class="col-3">
+            <div class="container-fluid contract-body-elem" id="contract-group-container">
+
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="contract-outer-border">
+                <div class="container contract-body-elem" id="contracts-container">
+                    <img class="corner-decoration corner-left-top" src="../static/image/corner-flower.png">
+                    <img class="corner-decoration corner-right-top" src="../static/image/corner-flower.png">
+                    <img class="corner-decoration corner-right-bottom" src="../static/image/corner-flower.png">
+                    <img class="corner-decoration corner-left-bottom" src="../static/image/corner-flower.png">
+                    <img class="vertical-decoration top" src="../static/image/edge-pattern.png">
+                    <img class="vertical-decoration bottom" src="../static/image/edge-pattern.png">
+                    {% for contract in contracts %}
+                    <div class="card contract-card" data-id="{{contract.id}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{contract.name}}</h5>
+                            <h6 class="card-subtitle mb-2">{{contract.group_name}}</h6>
+                            <div class="d-flex flex-row card-bottom">
+                                <div class="card-bottom-part">
+                                    <p> {{contract.type}} </p>
+                                </div>
+                                <div class="card-bottom-part">
+                                    <p class="more-data" data-bs-toggle="modal" data-bs-target="#contract-modal" data-id="{{contract.id}}"> more </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-bottom-part">
-                        <p class="more-data" data-bs-toggle="modal" data-bs-target="#contract-modal" data-id="{{contract.id}}"> more </p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
 </div>
 
