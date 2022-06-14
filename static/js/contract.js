@@ -121,14 +121,7 @@ async function loadContractData(id) {
 // Contract Manager
 function addContract(data) {
     addToContractDataList(CreateDataForContractDataList(data));
-    let ind = getNextElemInd(data.id);
-    let contractContainer = document.querySelector("#contracts-container");
-    contractContainer.innerHTML += contractFactory.createContract(data);
-    let newElement = contractContainer.children[contractContainer.children.length - 1];
-    if (ind < ContractDataList.length) {
-        contractContainer.insertBefore(newElement, contractContainer.children[ind]);
-    }
-    addEventListenerToAllMoreData();
+    showContract();
 }
 
 function deleteContract(id) {
@@ -139,6 +132,16 @@ function deleteContract(id) {
 function updateContract(id, data) {
     deleteContract(id);
     addContract(data);
+}
+
+function showContract() {
+    let contractContainer = document.querySelector("#contracts-container");
+    contractContainer.innerHTML = "";
+    ContractDataList.forEach(data => {
+        contractContainer.innerHTML += contractFactory.createContract(data);
+    })
+
+    addEventListenerToAllMoreData();
 }
 
 // ContractDataList Manager
@@ -164,14 +167,6 @@ function deleteFromContractDataList(id) {
 function updateElemOfContractDataList(id, data) {
     deleteFromContractDataList(id);
     addToContractDataList(data);
-}
-
-function getNextElemInd(id) {
-    let ind = 0;
-    while (ContractDataList[ind].id !== id && ind < ContractDataList.length) {
-        ind += 1;
-    }
-    return ind;
 }
 
 const sorter = (func1, func2) => (a, b) => {

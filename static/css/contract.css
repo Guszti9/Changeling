@@ -26,14 +26,17 @@ body:before {
     padding: 3px !important;
 }
 
-#contracts-container {
+#contracts-block {
     padding: 4em;
     margin: 0;
     position: relative;
+    border: #05386B solid 4px;
+}
+
+#contracts-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: #05386B solid 4px;
 }
 
 .contract-card {

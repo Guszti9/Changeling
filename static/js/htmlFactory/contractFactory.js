@@ -4,7 +4,7 @@ export let contractFactory = {
             <div class="card contract-card" data-id="${data.id}">
                 <div class="card-body">
                     <h5 class="card-title">${data.name}</h5>
-                    <h6 class="card-subtitle mb-2">${data.groupName}</h6>
+                    <h6 class="card-subtitle mb-2">${data.group_name}</h6>
                     <div class="d-flex flex-row card-bottom">
                         <div class="card-bottom-part">
                             <p>${data.type}</p>
