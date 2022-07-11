@@ -10,9 +10,12 @@ CREATE TABLE sheet (
 );
 
 CREATE TABLE contract_group (
-    id          SERIAL PRIMARY KEY NOT NULL,
-    name        VARCHAR(200)       NOT NULL,
-    description TEXT
+    id                  SERIAL PRIMARY KEY NOT NULL,
+    name                VARCHAR(200)       NOT NULL,
+    description         TEXT,
+    background_color    TEXT,
+    main_color          TEXT,
+    secondary_color     TEXT
 );
 
 CREATE TABLE contract (
@@ -43,7 +46,16 @@ CREATE TABLE sheet_contract(
 );
 
 INSERT INTO sheet (attributes, skills) VALUES ('2,2,2|3,2,1|2,1,3', '0,0,0,1,4,0,2,1|1,3,2,1,3,0,0,2|2,1,1,0,3,1,0,2');
-INSERT INTO contract_group (name) VALUES ('Contracts of the Crown');
+
+INSERT INTO contract_group (name, description, background_color, main_color, secondary_color)
+VALUES (
+        'Contracts of the Crown',
+        'yay',
+        '#242582',
+        '#F64C72',
+        '#99738E'
+        );
+
 INSERT INTO contract (name, type, contract_group_id, description, cost, dice_pool, dice_pool_against, loophole)
 VALUES (
         'Hostile Takeover',

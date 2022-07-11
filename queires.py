@@ -40,10 +40,18 @@ def get_contracts():
 def get_contract_groups():
     contracts = data_manager.execute_select(
         """
-        SELECT name
+        SELECT id, name, description, background_color, main_color, secondary_color
         FROM contract_group;
         """)
     return contracts
+
+
+def get_contract_group_by_id(id):
+    return data_manager.execute_select(
+        """
+        SELECT * FROM contract_group
+        WHERE id = %(board_id)s;
+        """, {"board_id": id}, False)
 
 
 def get_contract_group_id_by_name(name):
@@ -82,6 +90,22 @@ def update_contract(id, name, type, group_id, description, loophole, dice_pool):
     )
 
 
+def update_contract_group(id, name, description, background_color, main_color, secondary_color):
+    data_manager.execute_insert(
+        """
+        UPDATE contract_group
+        SET
+            name = %(name)s,
+            description = %(description)s,
+            background_color = %(background_color)s,
+            main_color = %(main_color)s,
+            secondary_color = %(secondary_color)s
+        WHERE id = %(id)s;
+        """, {"id": id, "name": name, "description": description, "background_color": background_color,
+              "main_color": main_color, "secondary_color": secondary_color}
+    )
+
+
 def update_attr_by_sheet_id(attr_str, sheet_id):
     data_manager.execute_insert(
         """
@@ -108,3 +132,13 @@ def add_contract(name, type, group_id, description, loophole, dice_pool):
         RETURNING id;
         """, {"name": name, "type": type, "group_id": group_id,
               "description": description, "loophole": loophole, "dice_pool": dice_pool}, False)
+
+
+def add_contract_group(name, description, background_color, main_color, secondary_color):
+    return data_manager.execute_select(
+        """
+        INSERT INTO contract_group (name, description, background_color, main_color, secondary_color)
+        VALUES (%(name)s, %(description)s, %(background_color)s, %(main_color)s, %(secondary_color)s)
+        RETURNING id;
+        """, {"name": name, "description": description, "background_color": background_color,
+              "main_color": main_color, "secondary_color": secondary_color}, False)

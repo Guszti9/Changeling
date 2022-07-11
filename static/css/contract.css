@@ -21,9 +21,10 @@ body:before {
     margin: 10px 0;
 }
 
-.contract-outer-border {
+.outer-border {
     border: #05386B solid 2px;
     padding: 3px !important;
+    height: 100%;
 }
 
 #contracts-block {

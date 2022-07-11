@@ -54,6 +54,28 @@ def api_contract(id):
         return jsonify({"massage": "ok"})
 
 
+@app.route('/contract_group', methods=['POST'])
+def contract_group():
+    if request.method == 'POST':
+        id = contract_controller.add_contract_group(request.json)
+        return jsonify({"massage": "ok", "id": id})
+
+
+@app.route('/contract_group/all', methods=['GET'])
+def get_all_contact_group():
+    if request.method == 'GET':
+        return jsonify(contract_controller.get_contract_groups())
+
+
+@app.route('/contract_group/<id>', methods=['GET', 'PUT'])
+def api_contract_group(id):
+    if request.method == 'GET':
+        return jsonify(contract_controller.get_contract_group_by_id(id))
+    if request.method == 'PUT':
+        contract_controller.edit_contract_group(id, request.json)
+        return jsonify({"massage": "ok"})
+
+
 @app.route('/contract_group/names', methods=['GET'])
 def get_all_group_name():
     return jsonify(contract_controller.get_groups())
