@@ -21,6 +21,8 @@
 
     <!-- JS files -->
     <script type="module" src="{{ url_for('static', filename='js/contract.js') }}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='js/contractGroup.js') }}" defer></script>
+
     <script type="module" src="{{ url_for('static', filename='js/data/dataHandler.js') }}" defer></script>
 </head>
 
@@ -43,9 +45,11 @@
                 <div class="container contract-body-elem" id="contract-group-block">
                     <div id="contracts-group-container">
                         {% for contract_group in contract_groups %}
-                        <div class="card contract-group-card" data-id="{{contract_group.id}}">
+                        <div class="card contract-group-card group-style" data-group-id = "{{contract_group.id}}">
                             <div class="card-body">
-                                <h5 class="card-title">{{contract_group.name}}</h5>
+                                <h5 class="card-title group-main-color" data-group-id = "{{contract_group.id}}">
+                                    {{contract_group.name}}
+                                </h5>
                             </div>
                         </div>
                         {% endfor %}
@@ -65,7 +69,7 @@
                     <img class="vertical-decoration bottom" src="../static/image/edge-pattern.png">
                     <div id="contracts-container">
                         {% for contract in contracts %}
-                        <div class="card contract-card" data-id="{{contract.id}}">
+                        <div class="card contract-card group-style" data-id="{{contract.id}}">
                             <div class="card-body">
                                 <h5 class="card-title">{{contract.name}}</h5>
                                 <h6 class="card-subtitle mb-2">{{contract.group_name}}</h6>

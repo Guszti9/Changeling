@@ -1,4 +1,9 @@
 export let dataHandler = {
+  getAllContractGroup: async function() {
+    const response = await apiGet(`/contract_group/all`);
+    return response;
+  },
+
   getContract: async function (id) {
     const response = await apiGet(`/contract/${id}`);
     return response;

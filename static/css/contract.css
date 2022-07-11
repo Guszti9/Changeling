@@ -52,7 +52,7 @@ body:before {
     border-radius: 10px;
     background-color: #05386B;
     margin: 10px;
-    width: min-content;
+    width: 180px;
     height: 150px;
 }
 
