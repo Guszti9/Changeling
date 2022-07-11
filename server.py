@@ -32,7 +32,7 @@ def update_skill():
 def contract():
     if request.method == 'GET':
         contracts = contract_controller.get_contracts()
-        contract_groups = contract_controller.get_groups()
+        contract_groups = contract_controller.get_contract_groups()
         return render_template("contract.html", contracts=contracts, contract_groups=contract_groups)
     if request.method == 'POST':
         id = contract_controller.add_contract(request.json)

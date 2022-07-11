@@ -27,6 +27,13 @@ body:before {
     height: 100%;
 }
 
+#contract-group-block {
+    padding: 1em;
+    margin: 0;
+    height: 100%;
+    border: #05386B solid 4px;
+}
+
 #contracts-block {
     padding: 4em;
     margin: 0;
@@ -47,6 +54,13 @@ body:before {
     margin: 10px;
     width: min-content;
     height: 150px;
+}
+
+.contract-group-card {
+    border: #5CDB95 solid 3px;
+    border-radius: 10px;
+    background-color: #05386B;
+    margin: 10px;
 }
 
 .card-body {

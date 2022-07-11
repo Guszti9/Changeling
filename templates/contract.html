@@ -40,8 +40,16 @@
     <div class="row">
         <div class="col-3">
             <div class="outer-border">
-                <div class="container contract-body-elem" id="contract-group-container">
-
+                <div class="container contract-body-elem" id="contract-group-block">
+                    <div id="contracts-group-container">
+                        {% for contract_group in contract_groups %}
+                        <div class="card contract-group-card" data-id="{{contract_group.id}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{contract_group.name}}</h5>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
