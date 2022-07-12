@@ -39,7 +39,7 @@ def add_contract_group(data):
                                       data["mainColor"], data["secondaryColor"])
 
 
-def get_groups():
+def get_groups_name():
     groups = queires.get_contract_groups()
     group_list = []
     for group in groups:

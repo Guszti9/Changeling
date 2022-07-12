@@ -78,7 +78,7 @@ def api_contract_group(id):
 
 @app.route('/contract_group/names', methods=['GET'])
 def get_all_group_name():
-    return jsonify(contract_controller.get_groups())
+    return jsonify(contract_controller.get_groups_name())
 
 
 def main():

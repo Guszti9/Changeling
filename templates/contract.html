@@ -69,16 +69,23 @@
                     <img class="vertical-decoration bottom" src="../static/image/edge-pattern.png">
                     <div id="contracts-container">
                         {% for contract in contracts %}
-                        <div class="card contract-card group-style" data-id="{{contract.id}}">
+                        <div class="card contract-card group-style" data-id="{{contract.id}}" data-group-id = "{{contract.group_id}}">
                             <div class="card-body">
-                                <h5 class="card-title">{{contract.name}}</h5>
-                                <h6 class="card-subtitle mb-2">{{contract.group_name}}</h6>
+                                <h5 class="card-title group-main-color" data-group-id = "{{contract.group_id}}">
+                                    {{contract.name}}
+                                </h5>
+                                <h6 class="card-subtitle mb-2 group-secondary-color" data-group-id = "{{contract.group_id}}">
+                                    {{contract.group_name}}
+                                </h6>
                                 <div class="d-flex flex-row card-bottom">
                                     <div class="card-bottom-part">
-                                        <p> {{contract.type}} </p>
+                                        <p class="group-main-color" data-group-id = "{{contract.group_id}}"> {{contract.type}} </p>
                                     </div>
                                     <div class="card-bottom-part">
-                                        <p class="more-data" data-bs-toggle="modal" data-bs-target="#contract-modal" data-id="{{contract.id}}"> more </p>
+                                        <p class="more-data group-main-color" data-group-id = "{{contract.group_id}}"
+                                           data-bs-toggle="modal" data-bs-target="#contract-modal" data-id="{{contract.id}}">
+                                            more
+                                        </p>
                                     </div>
                                 </div>
                             </div>

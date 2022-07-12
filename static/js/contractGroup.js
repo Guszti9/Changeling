@@ -21,16 +21,19 @@ async function loadContractGroups() {
 }
 
 function recolorCards() {
-    for (let key in contractGroups) {
-        document.querySelectorAll(`.group-style[data-group-id="${key}"]`).forEach((e) => {
-            e.style.backgroundColor = contractGroups[key].backgroundColor;
-            e.style.borderColor = contractGroups[key].mainColor;
-        });
-        document.querySelectorAll(`.group-main-color[data-group-id="${key}"]`).forEach((e) => {
-            e.style.color = contractGroups[key].mainColor;
-        });
-    }
-
+    document.querySelectorAll(`.group-style`).forEach((e) => {
+        let key = e.getAttribute("data-group-id");
+        e.style.backgroundColor = contractGroups[key].backgroundColor;
+        e.style.borderColor = contractGroups[key].mainColor;
+    });
+    document.querySelectorAll(`.group-main-color`).forEach((e) => {
+        let key = e.getAttribute("data-group-id");
+        e.style.color = contractGroups[key].mainColor;
+    });
+    document.querySelectorAll('.group-secondary-color').forEach((e) => {
+        let key = e.getAttribute("data-group-id");
+        e.style.color = contractGroups[key].secondaryColor;
+    })
 }
 
 function init() {

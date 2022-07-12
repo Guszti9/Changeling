@@ -27,6 +27,7 @@ def get_contracts():
         """
         SELECT 
             cg.name AS group_name,
+            cg.id AS group_id,
             contract.name As name,
             contract.id As id,
             type
