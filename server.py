@@ -81,6 +81,12 @@ def get_all_group_name():
     return jsonify(contract_controller.get_groups_name())
 
 
+@app.route('/contract_group/name', methods=['POST'])
+def get_group_id_by_name():
+    if request.method == 'POST':
+        return jsonify(contract_controller.get_group_id_by_name(request.json["name"]))
+
+
 def main():
     app.run(debug=False)
 

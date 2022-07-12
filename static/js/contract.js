@@ -1,5 +1,6 @@
 import { dataHandler } from "./data/dataHandler.js";
 import { contractFactory } from "./htmlFactory/contractFactory.js"
+import { groupController } from "./contractGroup.js"
 
 let ContractDataList = [];
 let contractData;
@@ -20,7 +21,7 @@ function addEventListenerToAddContractFinisher() {
     document.querySelector('#add-contract-finisher').addEventListener(
         "click",
         async function() {
-            let data = createData();
+            let data = await createData();
             let response = await dataHandler.addContract(data);
             if (response.massage === "ok") {
                 data.id = response.id;
@@ -54,7 +55,7 @@ function addEventListenerToEditContractFinisher() {
     document.querySelector("#edit-contract-finisher").addEventListener(
         "click",
         async function() {
-            let data = createData();
+            let data = await createData();
             let id = contractData.id
             data.id = id;
             let response = await dataHandler.updateContract(id, data);
@@ -88,9 +89,10 @@ function addDataToEditContract(data) {
     document.querySelector("#dice-pool-against-input").value = data.dice_pool_against;
 }
 
-function createData() {
+async function createData() {
     let name = document.querySelector("#contract-name-input").value;
     let groupName = document.querySelector('#group-select').value;
+    let groupId = await dataHandler.getGroupIdByName({name: groupName});
     let type = document.querySelector('#type-select').value;
     let description = document.querySelector('#contract-description-input').value;
     let loophole = document.querySelector('#loophole-input').value;
@@ -99,6 +101,7 @@ function createData() {
     return {
         name: name,
         groupName: groupName,
+        groupId: groupId,
         type: type,
         description: description,
         loophole: loophole,
@@ -112,10 +115,11 @@ async function clickToMore(e) {
 }
 
 async function loadContractData(id) {
-    document.querySelector("#contract-modal-dialog").innerHTML = contractFactory.createContractData();
     contractData = await dataHandler.getContract(id);
+    document.querySelector("#contract-modal-dialog").innerHTML = contractFactory.createContractData(contractData.group_id);
     addDataToMoreDataModal(contractData);
     addEventListenerToEditContract();
+    groupController.recolorByGroup();
 }
 
 // Contract Manager
@@ -142,6 +146,7 @@ function showContract() {
     })
 
     addEventListenerToAllMoreData();
+    groupController.recolorByGroup();
 }
 
 // ContractDataList Manager
@@ -149,6 +154,7 @@ function CreateDataForContractDataList(data) {
     return {
         id: data.id,
         name: data.name,
+        group_id: data.groupId,
         group_name: data.groupName,
         type: data.type
     }
@@ -186,6 +192,7 @@ function init() {
     dataHandler.getAllContract().then(result => {
         ContractDataList = result;
     })
+    groupController.loadContractGroups();
 }
 
 init();

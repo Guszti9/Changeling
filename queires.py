@@ -7,8 +7,9 @@ def get_contract_by_id(id):
         """
         SELECT
             contract.id AS id,
-            cg.name AS group_name,
             contract.name AS name,
+            cg.id AS group_id,
+            cg.name AS group_name,
             contract.description AS description,
             loophole,
             cost,
@@ -55,7 +56,7 @@ def get_contract_group_by_id(id):
         """, {"board_id": id}, False)
 
 
-def get_contract_group_id_by_name(name):
+def get_group_id_by_name(name):
     id = data_manager.execute_select(
         """
         SELECT id

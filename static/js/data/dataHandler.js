@@ -14,6 +14,11 @@ export let dataHandler = {
     return response;
   },
 
+  getGroupIdByName: async function (data) {
+    const response = await apiPost(`/contract_group/name`, data);
+    return response.id;
+  },
+
   getAllContract: async function () {
     const response = await apiGet(`/contract/all`);
     return response;

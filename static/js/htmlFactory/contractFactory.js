@@ -1,16 +1,23 @@
 export let contractFactory = {
     createContract: function createContract(data) {
         return `
-            <div class="card contract-card" data-id="${data.id}">
+            <div class="card contract-card group-style" data-id="${data.id}" data-group-id="${data.group_id}">
                 <div class="card-body">
-                    <h5 class="card-title">${data.name}</h5>
-                    <h6 class="card-subtitle mb-2">${data.group_name}</h6>
+                    <h5 class="card-title group-main-color" data-group-id="${data.group_id}">
+                        ${data.name}
+                    </h5>
+                    <h6 class="card-subtitle mb-2 group-secondary-color" data-group-id="${data.group_id}">
+                        ${data.group_name}
+                    </h6>
                     <div class="d-flex flex-row card-bottom">
                         <div class="card-bottom-part">
-                            <p>${data.type}</p>
+                            <p class="group-main-color" data-group-id="${data.group_id}">${data.type}</p>
                         </div>
                         <div class="card-bottom-part">
-                            <p class="more-data" data-bs-toggle="modal" data-bs-target="#contract-modal" data-id="${data.id}"> more </p>
+                            <p class="more-data group-main-color" data-group-id="${data.group_id}"
+                               data-bs-toggle="modal" data-bs-target="#contract-modal" data-id="${data.id}">
+                                more
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -18,23 +25,55 @@ export let contractFactory = {
         `
     },
 
-    createContractData: function createContractData() {
+    createContractData: function createContractData(group_id) {
         return `
-            <div class="modal-content">
+            <div class="modal-content group-style" data-group-id="${group_id}">
                 <div class="modal-header">
                     <div>
-                        <h3 class="contract-title" id="contractTitle"></h3>
-                        <h4 class="contract-title" id="contractGroup"></h4>
+                        <h3 class="contract-title group-main-color" data-group-id="${group_id}" id="contractTitle"></h3>
+                        <h4 class="contract-title group-secondary-color" data-group-id="${group_id}" id="contractGroup"></h4>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <p id="contractDescription"></p>
-                    <p id="contractLoopHole"></p>
-                    <p id="contractCost"></p>
-                    <p id="contractType"></p>
-                    <p id="contractDicePool"></p>
-                    <p id="contractDicePoolAgainst"></p>
+                <div class="modal-body container">
+                    <div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="group-main-color" data-group-id="${group_id}">Description</h5>
+                                <p id="contractDescription" class="group-secondary-color" data-group-id="${group_id}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="group-main-color" data-group-id="${group_id}">Loop Hole</h5>
+                                <p id="contractLoopHole" class="group-secondary-color" data-group-id="${group_id}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="group-main-color" data-group-id="${group_id}">Type</h5>
+                                <p id="contractType" class="group-secondary-color" data-group-id="${group_id}"></p>
+                            </div>
+                            <div class="col">
+                                <h5 class="group-main-color" data-group-id="${group_id}">Cost</h5>
+                                <p id="contractCost" class="group-secondary-color" data-group-id="${group_id}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="group-main-color" data-group-id="${group_id}">Contract Dice Pool</h5>
+                                <p id="contractDicePool" class="group-secondary-color" data-group-id="${group_id}"></p>
+                            </div>
+                            <div class="col">
+                                <h5 class="group-main-color" data-group-id="${group_id}">Dice Pool Against</h5>
+                                <p id="contractDicePoolAgainst" class="group-secondary-color" data-group-id="${group_id}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p id="contractCost" class="group-secondary-color" data-group-id="${group_id}"></p>
+                    <p id="contractType" class="group-main-color" data-group-id="${group_id}"></p>
+                    <p id="contractDicePool" class="group-secondary-color" data-group-id="${group_id}"></p>
+                    <p id="contractDicePoolAgainst" class="group-secondary-color" data-group-id="${group_id}"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
