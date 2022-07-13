@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS sheet CASCADE;
 DROP TABLE IF EXISTS contract_group CASCADE;
 DROP TABLE IF EXISTS contract CASCADE;
 DROP TABLE IF EXISTS sheet_contract CASCADE;
+DROP TABLE IF EXISTS seeming_benefit CASCADE;
 
 CREATE TABLE sheet (
     id          SERIAL PRIMARY KEY     NOT NULL,
@@ -22,7 +23,7 @@ CREATE TABLE contract (
     id                  SERIAL PRIMARY KEY     NOT NULL,
     name                VARCHAR(200)           NOT NULL,
     type                VARCHAR(200),
-    contract_group_id   INT,
+    contract_group_id   INT                    NOT NULL,
     description         TEXT,
     cost                VARCHAR(200),
     dice_pool           VARCHAR(200),
@@ -31,6 +32,15 @@ CREATE TABLE contract (
     CONSTRAINT fk_contract_group
       FOREIGN KEY(contract_group_id)
 	    REFERENCES contract_group(id)
+);
+
+CREATE TABLE seeming_benefit (
+    id                  SERIAL PRIMARY KEY     NOT NULL,
+    name                VARCHAR(200)           NOT NULL,
+    description         TEXT,
+    seeming             TEXT,
+    contract_id         INT                    NOT NULL,
+    CONSTRAINT fk_contract FOREIGN KEY (contract_id) REFERENCES contract(id)
 );
 
 CREATE TABLE sheet_contract(

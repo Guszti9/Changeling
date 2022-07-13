@@ -87,6 +87,28 @@ def get_group_id_by_name():
         return jsonify(contract_controller.get_group_id_by_name(request.json["name"]))
 
 
+@app.route('/seeming_benefit', methods=['POST'])
+def seeming_benefit():
+    if request.method == 'POST':
+        id = contract_controller.add_seeming_benefit(request.json)
+        return jsonify({"massage": "ok", "id": id})
+
+
+@app.route('/seeming_benefit/<id>', methods=['GET', 'PUT'])
+def api_seeming_benefit(id):
+    if request.method == 'GET':
+        return jsonify(contract_controller.get_seeming_benefit_by_id(id))
+    if request.method == 'PUT':
+        contract_controller.edit_seeming_benefit(id, request.json)
+        return jsonify({"massage": "ok"})
+
+
+@app.route('/seeming_benefit/contract/<id>', methods=['GET'])
+def get_seeming_benefit_for_contract(id):
+    if request.method == 'GET':
+        return jsonify(contract_controller.get_seeming_benefits_by_contract(id))
+
+
 def main():
     app.run(debug=False)
 

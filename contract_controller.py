@@ -50,3 +50,19 @@ def get_groups_name():
         group_list.append(group["name"])
     return group_list
 
+
+def get_seeming_benefit_by_id(id):
+    return queires.get_seeming_benefit_by_id(id)
+
+
+def edit_seeming_benefit(id, data):
+    queires.update_seeming_benefit(id, data["name"], data["description"], data["seeming"], data["contract_id"])
+
+
+def add_seeming_benefit(data):
+    return queires.add_seeming_benefit(data["name"], data["description"], data["seeming"], data["contract_id"])
+
+
+def get_seeming_benefits_by_contract(id):
+    return queires.get_seeming_benefits_by_contract(id)
+

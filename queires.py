@@ -75,6 +75,22 @@ def get_sheet_by_id(sheet_id):
     return sheet
 
 
+def get_seeming_benefit_by_id(id):
+    return data_manager.execute_select(
+        """
+        SELECT * FROM seeming_benefit
+        WHERE id = %(id)s;
+        """, {"id": id}, False)
+
+
+def get_seeming_benefits_by_contract(id):
+    return data_manager.execute_select(
+        """
+        SELECT * FROM seeming_benefit
+        WHERE contract_id = %(id)s;
+        """, {"id": id})
+
+
 def update_contract(id, name, type, group_id, description, loophole, dice_pool):
     data_manager.execute_insert(
         """
@@ -104,8 +120,20 @@ def update_contract_group(id, name, description, background_color, main_color, s
             secondary_color = %(secondary_color)s
         WHERE id = %(id)s;
         """, {"id": id, "name": name, "description": description, "background_color": background_color,
-              "main_color": main_color, "secondary_color": secondary_color}
-    )
+              "main_color": main_color, "secondary_color": secondary_color})
+
+
+def update_seeming_benefit(id, name, description, seeming, contract_id):
+    data_manager.execute_insert(
+        """
+        UPDATE seeming_benefit
+        SET
+            name = %(name)s,
+            description = %(description)s,
+            seeming = %(seeming)s,
+            contract_id = %(contract_id)s
+        WHERE id = %(id)s;
+        """, {"id": id, "name": name, "description": description, "seeming": seeming, "contract_id": contract_id})
 
 
 def update_attr_by_sheet_id(attr_str, sheet_id):
@@ -144,3 +172,13 @@ def add_contract_group(name, description, background_color, main_color, secondar
         RETURNING id;
         """, {"name": name, "description": description, "background_color": background_color,
               "main_color": main_color, "secondary_color": secondary_color}, False)
+
+
+def add_seeming_benefit(name, description, seeming, contract_id):
+    return data_manager.execute_select(
+        """
+            INSERT INTO seeming_benefit (name, description, seeming, contract_id)
+            VALUES (%(name)s, %(description)s, %(seeming)s, %(contract_id)s)
+            RETURNING id;
+            """, {"name": name, "description": description, "seeming": seeming, "contract_id": contract_id}, False)
+
